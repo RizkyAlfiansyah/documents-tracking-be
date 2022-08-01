@@ -17,7 +17,10 @@ class PrisonersFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id_prisoner' => "_" . $this->faker->randomNumber(8),
+            'nama' => $this->faker->name,
+            'nik' => $this->faker->nik(),
+            'status' => $this->faker->randomElement(['Aktif', 'Nonaktif']),
         ];
     }
 }

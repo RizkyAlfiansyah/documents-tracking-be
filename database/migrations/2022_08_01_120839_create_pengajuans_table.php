@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
+            $table->string('id_document');
+            $table->string('nama')->unique();
+            $table->string('resi')->unique();
+            $table->string('checkpoint')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

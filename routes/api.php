@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\PengajuanController;
+use App\Http\Controllers\api\PrisonersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('login', [AuthController::class, 'signin']);
+Route::post('register', [AuthController::class, 'signup']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('prisoners', PrisonersController::class);
+    Route::resource('pengajuan', PengajuanController::class);
+    Route::post('pengajuan/delete', [PengajuanController::class, 'remove']);
+    Route::post('prisoners/delete', [PrisonersController::class, 'remove']);
 });
