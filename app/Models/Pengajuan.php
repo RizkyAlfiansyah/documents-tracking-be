@@ -15,4 +15,9 @@ class Pengajuan extends Model
         'status',
         'checkpoint',
     ];
+
+    public function checkpoints()
+    {
+        return $this->hasMany(Checkpoint::class, 'id_pengajuan');
+    }
 }

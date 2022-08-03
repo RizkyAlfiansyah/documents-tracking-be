@@ -1,0 +1,21 @@
+[
+  {
+    "_id": "f7cc7e6b-a108-4688-b219-d78784e23d52",
+    "name": "(Global Env)",
+    "default": false,
+    "global": true,
+    "sortNum": -1,
+    "created": "2022-08-03T16:48:09.717Z",
+    "modified": "2022-08-03T17:13:23.461Z",
+    "data": [
+      {
+        "name": "token",
+        "value": "1|Svqzd0yVIZg3OhiqI72JUnlrMtPHIpOI1aoduMrn"
+      },
+      {
+        "name": "base_url",
+        "value": "http://127.0.0.1:8000/api"
+      }
+    ]
+  }
+]

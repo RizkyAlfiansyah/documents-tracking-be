@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "f2fb0c3a-222a-4334-af90-4978b15c2910",
+    "colName": "Documents tracker",
+    "created": "2022-08-03T16:37:22.194Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "60bfa0e1-2576-4475-9638-04d2b94bb739",
+        "name": "Auth",
+        "containerId": "",
+        "created": "2022-08-03T17:11:54.666Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "7f5e6fd9-21a0-449e-ab8a-b91058988eca",
+        "name": "Pengajuan",
+        "containerId": "",
+        "created": "2022-08-03T17:12:12.562Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "35d114eb-5fad-41fc-a593-c745ad6b8a34",
+        "name": "Checkpoint",
+        "containerId": "",
+        "created": "2022-08-03T17:13:58.485Z",
+        "sortNum": 30000
+      }
+    ],
+    "settings": {
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{token}}"
+        },
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "tests": []
+    }
+  }
+]
