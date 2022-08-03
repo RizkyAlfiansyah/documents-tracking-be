@@ -16,6 +16,7 @@ class Pengajuan extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'id_document' => $this->id_document,
             'nama' => $this->nama,
             'resi' => $this->resi,

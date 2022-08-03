@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\CheckpointController;
 use App\Http\Controllers\api\PengajuanController;
 use App\Http\Controllers\api\PrisonersController;
 use Illuminate\Http\Request;
@@ -29,4 +30,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('pengajuan', PengajuanController::class);
     Route::post('pengajuan/delete', [PengajuanController::class, 'remove']);
     Route::post('prisoners/delete', [PrisonersController::class, 'remove']);
+
+
+    Route::post('checkpoints', [CheckpointController::class, 'create']);
+    Route::delete('checkpoints/{id}', [CheckpointController::class, 'destroy']);
+    Route::patch('checkpoints/{id}', [CheckpointController::class, 'edit']);
 });

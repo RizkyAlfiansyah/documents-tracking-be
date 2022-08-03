@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
-// use Validator;
+use App\Http\Controllers\api\BaseController as BaseController;
 use App\Models\Pengajuan;
 use App\Http\Resources\Pengajuan as PengajuanResource;
 use Illuminate\Support\Facades\Validator;
@@ -28,35 +27,48 @@ class PengajuanController extends BaseController
             'resi' => $faker->unique()->randomNumber(8) . "MRS",
             'created_at' => now(),
         ]);
+
         $input = $request->all();
+
         $validator = Validator::make($input, [
             'nama' => 'required',
             'resi' => 'required',
             'status' => 'required'
         ]);
+
         if ($validator->fails()) {
             return $this->sendError($validator->errors());
         }
+
         $Pengajuan = Pengajuan::create($input);
+
         return $this->sendResponse(new PengajuanResource($Pengajuan), 'Post created.');
     }
 
     public function show($id)
     {
-        $Pengajuan = Pengajuan::find($id);
-        if (is_null($Pengajuan)) {
+        $fields = ['id' => $id];
+
+        $rules = [
+            'id' => ['exists:pengajuans,id']
+        ];
+
+        $validator = Validator::make($fields, $rules);
+
+        if ($validator->fails())
             return $this->sendError('Post does not exist.');
-        }
-        return $this->sendResponse(new PengajuanResource($Pengajuan), 'Post fetched.');
+
+        $pengajuan = Pengajuan::find($id)
+                                ->with(['checkpoints'])
+                                ->first()
+                                ->toArray();
+
+        $pengajuan['created_at'] = (new \DateTime($pengajuan['created_at']))->format('m/d/Y');
+        $pengajuan['updated_at'] = (new \DateTime($pengajuan['updated_at']))->format('m/d/Y');
+
+        return $this->sendResponse($pengajuan, 'Post fetched.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $input = $request->all();
@@ -66,27 +78,21 @@ class PengajuanController extends BaseController
             'status' => 'required',
             'checkpoint' => 'required'
         ]);
-        if ($validator->fails()) {
+
+        if ($validator->fails())
             return $this->sendError($validator->errors());
-        }
+
         $data = Pengajuan::findOrFail($id);
-        if (is_null($data)) {
+
+        if (is_null($data))
             return $this->sendError('Post does not exist.');
-        }
+
         $data->update($input);
         return $this->sendResponse(new PengajuanResource($data), 'Post updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
     public function destroy($id)
     {
-        // dd($id);
         $data = Pengajuan::findOrFail($id);
         $data->delete();
         return $this->sendResponse($data, 'Data deleted successfully.');
@@ -94,7 +100,6 @@ class PengajuanController extends BaseController
 
     public function remove(Request $id)
     {
-        // dd($id);
         Pengajuan::destroy($id->id);
         return $this->sendResponse($id, 'Data deleted successfully.');
     }
