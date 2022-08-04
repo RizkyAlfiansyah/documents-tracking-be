@@ -117,12 +117,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-08-03T18:34:40.518Z",
-    "modified": "2022-08-03T18:54:41.045Z",
+    "modified": "2022-08-04T14:31:16.200Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"id_pengajuan\": 2,\n  \"pesan\": \"masuk gan\",\n  \"waktu\": \"2022-09-11 22:30:01\"\n}",
+      "raw": "{\n  \"id_pengajuan\": 2,\n  \"pesan\": \"masuk gan lamami\",\n  \"waktu\": \"2022-08-15 22:30:01\"\n}",
       "form": []
     },
     "tests": []
@@ -139,6 +139,25 @@
     "modified": "2022-08-03T19:12:14.691Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5b304491-53e3-4b96-af50-4fdc6a217961",
+    "colId": "f2fb0c3a-222a-4334-af90-4978b15c2910",
+    "containerId": "35d114eb-5fad-41fc-a593-c745ad6b8a34",
+    "name": "update checkpoint",
+    "url": "{{base_url}}/checkpoints/4",
+    "method": "PATCH",
+    "sortNum": 100000,
+    "created": "2022-08-04T14:34:26.084Z",
+    "modified": "2022-08-04T14:57:07.294Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id_pengajuan\": 2,\n  \"pesan\": \"pesan diupdated\",\n  \"waktu\": \"2020-11-09 15:32:12\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

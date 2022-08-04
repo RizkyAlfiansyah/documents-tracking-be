@@ -13,8 +13,8 @@ class PengajuanController extends BaseController
 {
     public function index()
     {
-        $Pengajuan = Pengajuan::all();
-        return $this->sendResponse(PengajuanResource::collection($Pengajuan), 'Posts fetched.');
+        $pengajuan = Pengajuan::with(['lastCheckpoint'])->get();
+        return $this->sendResponse($pengajuan, 'Posts fetched.');
     }
 
     public function store(Request $request)
