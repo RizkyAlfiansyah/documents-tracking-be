@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-08-03T16:37:29.479Z",
-    "modified": "2022-08-03T17:13:16.583Z",
+    "modified": "2022-08-05T02:36:03.624Z",
     "headers": [
       {
         "name": "Accept",
@@ -18,7 +18,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"admin@admin\",\n  \"password\": \"admin\"\n}",
+      "raw": "{\n  \"identifier\": \"irham\",\n  \"password\": \"rahasia\"\n}",
       "form": []
     },
     "tests": []
@@ -156,6 +156,25 @@
     "body": {
       "type": "json",
       "raw": "{\n  \"id_pengajuan\": 2,\n  \"pesan\": \"pesan diupdated\",\n  \"waktu\": \"2020-11-09 15:32:12\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "03c473d3-0c76-40b0-8448-40967518adc8",
+    "colId": "f2fb0c3a-222a-4334-af90-4978b15c2910",
+    "containerId": "60bfa0e1-2576-4475-9638-04d2b94bb739",
+    "name": "sign up",
+    "url": "{{base_url}}/register",
+    "method": "POST",
+    "sortNum": 110000,
+    "created": "2022-08-05T02:14:29.514Z",
+    "modified": "2022-08-05T02:24:47.942Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"irham\",\n  \"username\": \"irham\",\n  \"nip\": 1234,\n  \"password\": \"rahasia\",\n  \"confirm_password\": \"rahasia\"\n}",
       "form": []
     },
     "tests": []
