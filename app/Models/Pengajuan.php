@@ -18,6 +18,13 @@ class Pengajuan extends Model
 
     public function checkpoints()
     {
-        return $this->hasMany(Checkpoint::class, 'id_pengajuan');
+        return $this->hasMany(Checkpoint::class, 'id_pengajuan')
+                    ->orderBy('waktu', 'desc');
+    }
+
+    public function lastCheckpoint()
+    {
+        return $this->hasOne(Checkpoint::class, 'id_pengajuan')
+                    ->orderBy('waktu', 'desc');
     }
 }

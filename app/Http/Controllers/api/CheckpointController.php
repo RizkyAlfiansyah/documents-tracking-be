@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -56,5 +55,35 @@ class CheckpointController extends BaseController
         $data = Checkpoint::find($id);
         $data->delete();
         return $this->sendResponse($data, 'Checkpoint deleted successfully.');
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $fields = [
+            'id' => $id,
+            'id_pengajuan' => $request->id_pengajuan,
+            'pesan' => $request->pesan,
+            'waktu' => $request->waktu
+        ];
+
+        $rules = [
+            'id' => ['exists:checkpoints,id'],
+            'id_pengajuan' => ['exists:pengajuans,id'],
+            'pesan' => ['required' ,'string'],
+            'waktu' => ['required', 'date', 'date_format:Y-m-d H:i:s']
+        ];
+
+        $validator = Validator::make($fields, $rules);
+
+        if ($validator->fails())
+            return $this->sendError($validator->errors());
+
+        $data = Checkpoint::find($id);
+        $data->id_pengajuan = $request->id_pengajuan;
+        $data->pesan = $request->pesan;
+        $data->waktu = $request->waktu;
+        $data->save();
+
+        return $this->sendResponse($data->toArray(), 'Checkpoint updated successfully');
     }
 }
