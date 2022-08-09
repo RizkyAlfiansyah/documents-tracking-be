@@ -18,8 +18,7 @@ class AuthController extends BaseController
         if (!$credential)
             $credential = Auth::attempt(['nip' => $request->identifier, 'password' => $request->password]);
 
-        if ($credential)
-        {
+        if ($credential) {
             $authUser = Auth::user();
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
             $success['name'] =  $authUser->name;
@@ -51,5 +50,12 @@ class AuthController extends BaseController
         $success['name'] =  $user->name;
 
         return $this->sendResponse($success, 'User created successfully.');
+    }
+
+    public function logout(Request $request)
+    {
+        // dd(Auth::user());
+        auth()->user()->tokens()->delete();
+        return $this->sendResponse([], 'User logged out successfully.');
     }
 }
