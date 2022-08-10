@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\api\BaseController as BaseController;
 // use Validator;
 use App\Models\Prisoners;
 use App\Http\Resources\Prisoners as PrisonersResource;
