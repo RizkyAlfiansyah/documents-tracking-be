@@ -16,6 +16,7 @@ class Prisoners extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'id_prisoner' => $this->id_prisoner,
             'nama' => $this->nama,
             'nik' => $this->nik,
