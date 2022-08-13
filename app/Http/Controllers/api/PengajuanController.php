@@ -58,7 +58,7 @@ class PengajuanController extends BaseController
         if ($validator->fails())
             return $this->sendError('Post does not exist.');
 
-        $pengajuan = Pengajuan::find($id)
+        $pengajuan = Pengajuan::where('id', $id)
                                 ->with(['checkpoints'])
                                 ->first()
                                 ->toArray();
