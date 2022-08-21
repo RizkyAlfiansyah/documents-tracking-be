@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'signin']);
 Route::post('register', [AuthController::class, 'signup']);
-Route::get('resi/{id}', [PengajuanController::class, 'show']);
+Route::get('resi', [PengajuanController::class, 'index']);
+Route::get('resi/{id}', [PengajuanController::class, 'showResi']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('prisoners', PrisonersController::class);

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_document');
             $table->string('nama')->unique();
+            $table->string('nik')->unique();
             $table->string('resi')->unique();
             $table->string('checkpoint')->nullable();
             $table->string('status');

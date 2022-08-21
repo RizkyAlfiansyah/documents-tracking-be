@@ -11,6 +11,7 @@ class Pengajuan extends Model
     protected $fillable = [
         'id_document',
         'nama',
+        'nik',
         'resi',
         'status',
         'checkpoint',
@@ -19,12 +20,12 @@ class Pengajuan extends Model
     public function checkpoints()
     {
         return $this->hasMany(Checkpoint::class, 'id_pengajuan')
-                    ->orderBy('waktu', 'desc');
+            ->orderBy('waktu', 'desc');
     }
 
     public function lastCheckpoint()
     {
         return $this->hasOne(Checkpoint::class, 'id_pengajuan')
-                    ->orderBy('waktu', 'desc');
+            ->orderBy('waktu', 'desc');
     }
 }

@@ -32,6 +32,7 @@ class PengajuanController extends BaseController
 
         $validator = Validator::make($input, [
             'nama' => 'required',
+            'nik' => 'required',
             'resi' => 'required',
             'status' => 'required'
         ]);
@@ -59,9 +60,33 @@ class PengajuanController extends BaseController
             return $this->sendError('Post does not exist.');
 
         $pengajuan = Pengajuan::where('id', $id)
-                                ->with(['checkpoints'])
-                                ->first()
-                                ->toArray();
+            ->with(['checkpoints'])
+            ->first()
+            ->toArray();
+
+        $pengajuan['created_at'] = (new \DateTime($pengajuan['created_at']))->format('m/d/Y');
+        $pengajuan['updated_at'] = (new \DateTime($pengajuan['updated_at']))->format('m/d/Y');
+
+        return $this->sendResponse($pengajuan, 'Post fetched.');
+    }
+
+    public function showResi($id)
+    {
+        $fields = ['resi' => $id];
+
+        $rules = [
+            'resi' => ['exists:pengajuans,resi']
+        ];
+
+        $validator = Validator::make($fields, $rules);
+
+        if ($validator->fails())
+            return $this->sendError('Post does not exist.');
+
+        $pengajuan = Pengajuan::where('resi', $id)
+            ->with(['checkpoints'])
+            ->first()
+            ->toArray();
 
         $pengajuan['created_at'] = (new \DateTime($pengajuan['created_at']))->format('m/d/Y');
         $pengajuan['updated_at'] = (new \DateTime($pengajuan['updated_at']))->format('m/d/Y');
