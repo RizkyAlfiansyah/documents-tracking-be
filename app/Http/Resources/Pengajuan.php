@@ -20,6 +20,7 @@ class Pengajuan extends JsonResource
             'id_document' => $this->id_document,
             'nama' => $this->nama,
             'resi' => $this->resi,
+            'nik' => $this->nik,
             'checkpoint' => $this->checkpoint,
             'status' => $this->status,
             'created_at' => $this->created_at->format('m/d/Y'),
